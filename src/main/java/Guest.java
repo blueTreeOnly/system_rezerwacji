@@ -4,16 +4,14 @@ public class Guest {
     String lastName;
     int age;
 
-    public Guest(){
-        System.out.println("Stworzono nowy obiekt klasy Guest");
-    }
+    public Guest(String firstName, String lastName, int age){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        System.out.println("Utworzyłem gościa o takich danych: ");
+        System.out.println("Imie: " + firstName);
+        System.out.println("Nazwisko: " + lastName);
+        System.out.println("Wiek: " + age);
 
-    public Guest(String newFirstName, String newLastName, int newAge){
-        firstName = newFirstName;
-        lastName = newLastName;
-        age = newAge;
-        System.out.println(firstName);
-        System.out.println(lastName);
-        System.out.println(age);
     }
 }

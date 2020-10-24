@@ -35,8 +35,23 @@ public class App {
 
         if (option == 1) {
             System.out.println("Tworzymy nowego gościa");
-            Guest createdGuest  = new Guest("Marek", "Cwik",33);
-            Guest createdGuest2 = new Guest("Paweł", "Kowalski",21);
+            System.out.println("Podaj imię: ");
+            String firstName = input.next();
+            System.out.println("Podaj nawisko: ");
+            String lastName = input.next();
+            System.out.println("Podaj wiek: ");
+            int age = 0;
+            try {
+                age = input.nextInt();
+            } catch (Exception e) {
+                System.out.println("Niepoprawne dane wejściowe, wprowadź liczbę.");
+                e.printStackTrace();
+            }
+
+            Guest newGuest  = new Guest(firstName, lastName, age);
+
+
+
         } else if (option == 2) {
             System.out.println("Wybrano opcje 2. ");
         } else if (option == 3) {
