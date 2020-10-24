@@ -21,14 +21,28 @@ public class App {
         Scanner input = new Scanner(System.in);
         System.out.println("1. Dodaj nowego gościa.");
         System.out.println("2. Dodaj nowy pokój.");
+        System.out.println("3. Wyszukaj gościa.");
         System.out.println("Wybierz opcję: ");
 
-        int option = input.nextInt();
+        int option = 0;
 
-        if(option == 1){
-            System.out.println("Wybrano opcję 1.");
-        }else{
+        try {
+            option = input.nextInt();
+        } catch (Exception e) {
+            System.out.println("Niepoprawne dane wejściowe, wprowadź liczbę.");
+            e.printStackTrace();
+        }
+
+        if (option == 1) {
+            System.out.println("Tworzymy nowego gościa");
+            Guest createdGuest  = new Guest("Marek", "Cwik",33);
+            Guest createdGuest2 = new Guest("Paweł", "Kowalski",21);
+        } else if (option == 2) {
             System.out.println("Wybrano opcje 2. ");
+        } else if (option == 3) {
+            System.out.println("Wybrano opcje 3.");
+        } else {
+            System.out.println("Wybrano niepoprawną opcję");
         }
     }
 }
