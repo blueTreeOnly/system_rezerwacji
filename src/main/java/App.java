@@ -8,12 +8,9 @@ public class App {
         int systemVersion = 1;
         boolean isDeveloperVersion = true;
 
-        System.out.print("Witam w systemie rezerwacji dla hotelu");
-        System.out.println(hotelName);
-        System.out.println("Aktualna wersja systemu: ");
-        System.out.println(systemVersion);
-        System.out.println("Wersja developerska: ");
-        System.out.println(isDeveloperVersion);
+        System.out.print("Witam w systemie rezerwacji dla hotelu " + hotelName);
+        System.out.println("Aktualna wersja systemu: " + systemVersion);
+        System.out.println("Wersja developerska: " + isDeveloperVersion);
 
         System.out.println("\n=========================\n");
 
@@ -32,7 +29,7 @@ public class App {
             System.out.println("Niepoprawne dane wejsciowe, wprowadz liczbę.");
             e.printStackTrace();
         }
-        
+
         if (option == 1) {
             System.out.println("Tworzymy nowego gościa.");
             try {
@@ -45,12 +42,27 @@ public class App {
                 Guest createdGuest = new Guest(firstName, lastName, age);
             } catch (Exception e) {
                 System.out.println("Zły wiek, używaj liczb.");
+                e.printStackTrace();
             }
         } else if (option == 2) {
             System.out.println("Wybrano opcję 2.");
+
+            try {
+                System.out.print("Podaj numer pokoju: ");
+                int number = input.nextInt();
+                System.out.print("Podaj ilość łóżek");
+                int beds = input.nextInt();
+                Room createdRoom = new Room(number, beds);
+            }catch (Exception e) {
+                System.out.println("Używaj liczb");
+                e.printStackTrace();
+            }
         } else if (option == 3) {
             System.out.println("Wybrano opcję 3.");
-        } else {
+        } else if (option == 4) {
+            System.out.println("Wybrano opcię 4.");
+
+        }else{
             System.out.println("Wybrano niepoprawną akcję.");
         }
     }
