@@ -7,7 +7,7 @@ public class Room {
         this.number = number;
         this.beds = beds;
 
-        System.out.println("Stworzyłem pokój o numerze: " + this.number +" na " + this.beds + " osób.");
+
 
     }
 }

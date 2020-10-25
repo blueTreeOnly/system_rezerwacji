@@ -33,13 +33,15 @@ public class App {
         if (option == 1) {
             System.out.println("Tworzymy nowego gościa.");
             try {
-                System.out.println("Podaj imię: ");
+                System.out.print("Podaj imię: ");
                 String firstName = input.next();
-                System.out.println("Podaj nazwisko: ");
+                System.out.print("Podaj nazwisko: ");
                 String lastName = input.next();
-                System.out.println("Podaj wiek: ");
+                System.out.print("Podaj wiek: ");
                 int age = input.nextInt();
-                Guest createdGuest = new Guest(firstName, lastName, age);
+                Guest newGuest = new Guest(firstName, lastName, age);
+                String guestInfo = String.format("Stworzono gościa: %s %s (%d)",newGuest.firstName, newGuest.lastName, newGuest.age);
+                System.out.println(guestInfo);
             } catch (Exception e) {
                 System.out.println("Zły wiek, używaj liczb.");
                 e.printStackTrace();
@@ -52,17 +54,17 @@ public class App {
                 int number = input.nextInt();
                 System.out.print("Podaj ilość łóżek");
                 int beds = input.nextInt();
-                Room createdRoom = new Room(number, beds);
-            }catch (Exception e) {
+                Room newRoom = new Room(number, beds);
+                String roomInfo = String.format("Stworzyłem pokój o numerze: %d dla %d osób ", newRoom.number, newRoom.beds );
+                System.out.println(roomInfo);
+
+            } catch (Exception e) {
                 System.out.println("Używaj liczb");
                 e.printStackTrace();
             }
         } else if (option == 3) {
             System.out.println("Wybrano opcję 3.");
-        } else if (option == 4) {
-            System.out.println("Wybrano opcię 4.");
-
-        }else{
+        } else {
             System.out.println("Wybrano niepoprawną akcję.");
         }
     }
