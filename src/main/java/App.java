@@ -1,71 +1,76 @@
 import java.util.Scanner;
 
 public class App {
-
     public static void main(String[] args) {
-
         String hotelName = "Overlook";
         int systemVersion = 1;
         boolean isDeveloperVersion = true;
-
-        System.out.print("Witam w systemie rezerwacji dla hotelu " + hotelName);
-        System.out.println("Aktualna wersja systemu: " + systemVersion);
-        System.out.println("Wersja developerska: " + isDeveloperVersion);
-
-        System.out.println("\n=========================\n");
+        showSystemInfo(hotelName, systemVersion, isDeveloperVersion);
 
         Scanner input = new Scanner(System.in);
 
-        System.out.println("1. Dodaj nowego gościa.");
-        System.out.println("2. Dodaj nowy pokój.");
-        System.out.println("3. Wyszukaj gościa.");
-        System.out.println("Wybierz opcję: ");
-
-        int option = 0;
-
-        try {
-            option = input.nextInt();
-        } catch (Exception e) {
-            System.out.println("Niepoprawne dane wejsciowe, wprowadz liczbę.");
-            e.printStackTrace();
-        }
-
+        int option = getActionFromUser(input);
+        
         if (option == 1) {
-            System.out.println("Tworzymy nowego gościa.");
-            try {
-                System.out.print("Podaj imię: ");
-                String firstName = input.next();
-                System.out.print("Podaj nazwisko: ");
-                String lastName = input.next();
-                System.out.print("Podaj wiek: ");
-                int age = input.nextInt();
-                Guest newGuest = new Guest(firstName, lastName, age);
-                String guestInfo = String.format("Stworzono gościa: %s %s (%d)",newGuest.firstName, newGuest.lastName, newGuest.age);
-                System.out.println(guestInfo);
-            } catch (Exception e) {
-                System.out.println("Zły wiek, używaj liczb.");
-                e.printStackTrace();
-            }
+            Guest newGuest = createNewGuest(input);
         } else if (option == 2) {
-            System.out.println("Wybrano opcję 2.");
-
+            System.out.println("Tworzymy nowy pokój.");
             try {
-                System.out.print("Podaj numer pokoju: ");
+                System.out.println("Numer: ");
                 int number = input.nextInt();
-                System.out.print("Podaj ilość łóżek");
+                System.out.println("Ilość łóżek: ");
                 int beds = input.nextInt();
                 Room newRoom = new Room(number, beds);
-                String roomInfo = String.format("Stworzyłem pokój o numerze: %d dla %d osób ", newRoom.number, newRoom.beds );
-                System.out.println(roomInfo);
-
+                String info = String.format("Dodano nowy pokoj - numer %d (%d)", newRoom.number, newRoom.beds);
+                System.out.println(info);
             } catch (Exception e) {
-                System.out.println("Używaj liczb");
-                e.printStackTrace();
+                System.out.println("Używaj liczb.");
             }
         } else if (option == 3) {
             System.out.println("Wybrano opcję 3.");
         } else {
             System.out.println("Wybrano niepoprawną akcję.");
+        }
+    }
+
+    public static void showSystemInfo(String hotelName, int systemVersion, boolean isDeveloperVersion) {
+        System.out.print("Witam w systemie rezerwacji dla hotelu " + hotelName);
+        System.out.println("Aktualna wersja systemu: " + systemVersion);
+        System.out.println("Wersja developerska: " + isDeveloperVersion);
+        System.out.println("\n=========================\n");
+    }
+
+    public static int getActionFromUser(Scanner in) {
+        System.out.println("1. Dodaj nowego gościa.");
+        System.out.println("2. Dodaj nowy pokój.");
+        System.out.println("3. Wyszukaj gościa.");
+        System.out.println("Wybierz opcję: ");
+        int option = 0;
+        try {
+            option = in.nextInt();
+        } catch (Exception e) {
+            System.out.println("Niepoprawne dane wejsciowe, wprowadz liczbę.");
+            e.printStackTrace();
+        }
+        return option;
+    }
+
+    public static Guest createNewGuest(Scanner input) {
+        System.out.println("Tworzymy nowego gościa.");
+        try {
+            System.out.println("Podaj imię: ");
+            String firstName = input.next();
+            System.out.println("Podaj nazwisko: ");
+            String lastName = input.next();
+            System.out.println("Podaj wiek: ");
+            int age = input.nextInt();
+            Guest newGuest = new Guest(firstName, lastName, age);
+            String info = String.format("Dodano nowego gościa: %s %s (%d) ", newGuest.firstName, newGuest.lastName, newGuest.age);
+            System.out.println(info);
+            return newGuest;
+        } catch (Exception e) {
+            System.out.println("Zły wiek, używaj liczb.");
+            return null;
         }
     }
 }
