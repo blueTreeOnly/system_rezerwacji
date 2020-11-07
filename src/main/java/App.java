@@ -5,17 +5,13 @@ public class App {
         String hotelName = "Overlook";
         int systemVersion = 1;
         boolean isDeveloperVersion = true;
-
         showSystemInfo(hotelName, systemVersion, isDeveloperVersion);
-
         Scanner input = new Scanner(System.in);
-
         int option = getActionFromUser(input);
-
         if (option == 1) {
             Guest newGuest = createNewGuest(input);
         } else if (option == 2) {
-            Room room = createNewRoom(input);
+            Room newRoom = createNewRoom(input);
         } else if (option == 3) {
             System.out.println("Wybrano opcję 3.");
         } else {
@@ -23,16 +19,14 @@ public class App {
         }
     }
 
-    private static void showSystemInfo(String hotelName, int systemVersion, boolean isDeveloperVersion) {
-
+    public static void showSystemInfo(String hotelName, int systemVersion, boolean isDeveloperVersion) {
         System.out.print("Witam w systemie rezerwacji dla hotelu " + hotelName);
         System.out.println("Aktualna wersja systemu: " + systemVersion);
         System.out.println("Wersja developerska: " + isDeveloperVersion);
         System.out.println("\n=========================\n");
     }
 
-    private static int getActionFromUser(Scanner in) {
-
+    public static int getActionFromUser(Scanner in) {
         System.out.println("1. Dodaj nowego gościa.");
         System.out.println("2. Dodaj nowy pokój.");
         System.out.println("3. Wyszukaj gościa.");
@@ -47,8 +41,7 @@ public class App {
         return option;
     }
 
-    private static Guest createNewGuest(Scanner input) {
-
+    public static Guest createNewGuest(Scanner input) {
         System.out.println("Tworzymy nowego gościa.");
         try {
             System.out.println("Podaj imię: ");
@@ -66,14 +59,13 @@ public class App {
         }
     }
 
-    private static Room createNewRoom(Scanner input) {
+    public static Room createNewRoom(Scanner input) {
         System.out.println("Tworzymy nowy pokój.");
         try {
             System.out.println("Numer: ");
             int number = input.nextInt();
-            System.out.println("Ilość łóżek: ");
-            int beds = input.nextInt();
-            Room newRoom = new Room(number, beds);
+            BedType bedType = chooseBedType(input);
+            Room newRoom = new Room(number, bedType);
             System.out.println(newRoom.getInfo());
             return newRoom;
         } catch (Exception e) {
@@ -81,7 +73,22 @@ public class App {
             e.printStackTrace();
             return null;
         }
-
     }
 
+    static private BedType chooseBedType(Scanner input) {
+        System.out.println("Typy łóżek: ");
+        System.out.println("\t1. Pojedyncze");
+        System.out.println("\t2. Podwójne");
+        System.out.println("\t3. Królewskie");
+        BedType bedType = BedType.SINGLE;
+        int bedTypeOption = input.nextInt();
+        if (bedTypeOption == 1) {
+            bedType = BedType.SINGLE;
+        } else if (bedTypeOption == 2) {
+            bedType = BedType.DOUBLE;
+        } else if (bedTypeOption == 3) {
+            bedType = BedType.KING_SIZE;
+        }
+        return bedType;
+    }
 }
