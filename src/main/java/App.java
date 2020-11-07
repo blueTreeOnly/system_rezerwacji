@@ -57,7 +57,8 @@ public class App {
             String lastName = input.next();
             System.out.println("Podaj wiek: ");
             int age = input.nextInt();
-            Guest newGuest = new Guest(firstName, lastName, age);
+            Gender gender = genderType(input);
+            Guest newGuest = new Guest(firstName, lastName, age, gender);
             System.out.println(newGuest.getInfo());
             return newGuest;
         } catch (Exception e) {
@@ -82,7 +83,17 @@ public class App {
         }
 
     }
-
+    //TODO change to try catch
+    private static Gender genderType(Scanner input){
+        System.out.println("Wybierz płeć: ");
+        System.out.println("\t 1. Kobieta: ");
+        System.out.println("\t 2. Mężczyzna: ");
+        int gender = input.nextInt();
+        if(gender == 1){return Gender.FEMALE;}
+        if(gender == 2){return Gender.MALE;}
+        else {return null;}
+    }
+    //TODO change to try catch 
     private static BedType chooseBed(Scanner input) {
         System.out.println("Podaj ilość łóżek: ");
         System.out.println("1. Pojedyncze łóżko");
