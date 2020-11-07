@@ -72,8 +72,8 @@ public class App {
             System.out.println("Numer: ");
             int number = input.nextInt();
             System.out.println("Ilość łóżek: ");
-            int beds = input.nextInt();
-            Room newRoom = new Room(number, beds);
+            //int bedType = input.nextInt();
+            Room newRoom = new Room(number, BedType.DOUBLE);
             System.out.println(newRoom.getInfo());
             return newRoom;
         } catch (Exception e) {
