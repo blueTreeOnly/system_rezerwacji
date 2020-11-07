@@ -50,7 +50,7 @@ public class App {
             String lastName = input.next();
             System.out.println("Podaj wiek: ");
             int age = input.nextInt();
-            Guest newGuest = new Guest(firstName, lastName, age);
+            Guest newGuest = new Guest(firstName, lastName, age, gender);
             System.out.println(newGuest.getInfo());
             return newGuest;
         } catch (Exception e) {
